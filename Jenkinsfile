@@ -17,8 +17,8 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 withCredentials([string(credentialsId: 'docker-pass', variable: 'DOCKER_PASS')]) {
-                    sh 'echo $DOCKER_PASS | docker login -u $DOCKERHUB_USERNAME --password-stdin'
-                    sh 'docker push $DOCKERHUB_USERNAME/$IMAGE_NAME'
+                    sh 'echo "$DOCKER_PASS" | docker login -u  praka555 --password-stdin'
+                    sh 'docker push  praka555/nginx-devops'
                 }
             }
         }
