@@ -8,12 +8,6 @@ pipeline {
 
     stages {
 
-        stage('Clone Repo') {
-            steps {
-                git 'YOUR_GITHUB_REPO_LINK'
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t $DOCKERHUB_USERNAME/$IMAGE_NAME .'
@@ -37,3 +31,4 @@ pipeline {
         }
     }
 }
+
