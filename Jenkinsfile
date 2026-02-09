@@ -18,9 +18,13 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 sh '''
-                export KUBECONFIG=/var/snap/jenkins/common/.kube/config
-                kubectl apply --validate=false -f deployment.yaml
-                kubectl apply --validate=false -f service.yaml
+                sudo -u ubuntu \
+                  KUBECONFIG=/var/snap/jenkins/common/.kube/config \
+                  /snap/bin/kubectl apply --validate=false -f deployment.yaml
+
+                sudo -u ubuntu \
+                  KUBECONFIG=/var/snap/jenkins/common/.kube/config \
+                  /snap/bin/kubectl apply --validate=false -f service.yaml
                 '''
             }
         }
