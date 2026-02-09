@@ -1,43 +1,39 @@
 pipeline {
     agent any
 
-    environment {
-        IMAGE_NAME = "praka555/nginx-devops"
-    }
-
     stages {
-
         stage('Checkout') {
             steps {
-                git branch: 'main',
-                url: 'https://github.com/prakashini-sudo/devops-cicd-project.git'
+                git 'https://github.com/<your-username>/<your-repo>.git'
+            }
+        }
+
+        stage('Build with Maven') {
+            steps {
+                sh 'mvn clean package'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $IMAGE_NAME .'
+                sh 'docker build -t <dockerhub-username>/java-app:latest .'
             }
         }
 
         stage('Push Docker Image') {
             steps {
-                withCredentials([string(credentialsId: 'docker-pass', variable: 'DOCKER_PASS')]) {
-                    sh '''
-                    echo $DOCKER_PASS | docker login -u praka555 --password-stdin
-                    docker push $IMAGE_NAME
-                    '''
-                }
+                sh 'docker push <dockerhub-username>/java-app:latest'
             }
         }
 
         stage('Deploy to Kubernetes') {
             steps {
                 sh '''
-                kubectl apply -f deployment.yaml
-                kubectl apply -f service.yaml
+                kubectl apply -f k8s/
+                kubectl rollout status deployment/java-app
                 '''
             }
         }
     }
 }
+
