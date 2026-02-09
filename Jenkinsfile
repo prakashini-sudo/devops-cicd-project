@@ -19,10 +19,20 @@ pipeline {
             steps {
                 sh '''
                 export KUBECONFIG=/var/snap/jenkins/common/.kube/config
-                kubectl apply --validate=false -f deployment.yaml
-                kubectl apply --validate=false -f service.yaml
+                export KUBECTL_CACHE_DIR=/tmp/kubecache
+
+                kubectl apply \
+                  --validate=false \
+                  --cache-dir=/tmp/kubecache \
+                  -f deployment.yaml
+
+                kubectl apply \
+                  --validate=false \
+                  --cache-dir=/tmp/kubecache \
+                  -f service.yaml
                 '''
             }
         }
     }
 }
+
