@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/<your-username>/<your-repo>.git'
+                git 'https://github.com/prakashini-sudo/devops-cicd-project.git'
             }
         }
 
@@ -16,13 +16,13 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t <dockerhub-username>/java-app:latest .'
+                sh 'docker build -t praka555/java-app:latest .'
             }
         }
 
         stage('Push Docker Image') {
             steps {
-                sh 'docker push <dockerhub-username>/java-app:latest'
+                sh 'docker push praka555/java-app:latest'
             }
         }
 
@@ -36,4 +36,3 @@ pipeline {
         }
     }
 }
-
