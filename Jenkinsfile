@@ -18,6 +18,7 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 sh '''
+                export KUBECONFIG=/var/snap/jenkins/common/.kube/config
                 kubectl apply -f deployment.yaml
                 kubectl apply -f service.yaml
                 '''
@@ -25,4 +26,3 @@ pipeline {
         }
     }
 }
-
