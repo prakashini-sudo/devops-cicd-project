@@ -19,8 +19,8 @@ pipeline {
             steps {
                 sh '''
                 export KUBECONFIG=/var/snap/jenkins/common/.kube/config
-                kubectl apply -f deployment.yaml
-                kubectl apply -f service.yaml
+                kubectl apply --validate=false -f deployment.yaml
+                kubectl apply --validate=false -f service.yaml
                 '''
             }
         }
