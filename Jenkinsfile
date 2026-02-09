@@ -2,11 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/prakashini-sudo/devops-cicd-project.git'
-            }
-        }
 
         stage('Build with Maven') {
             steps {
