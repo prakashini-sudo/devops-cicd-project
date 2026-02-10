@@ -1,0 +1,12 @@
+[jenkins]
+jenkins ansible_host=172.31.240.28 ansible_user=ubuntu
+
+[k8s_master]
+master ansible_host=172.31.240.79 ansible_user=ubuntu
+
+[k8s_worker]
+worker ansible_host=172.31.240.75 ansible_user=ubuntu
+
+[k8s:children]
+k8s_master
+k8s_worker

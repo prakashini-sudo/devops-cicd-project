@@ -1,0 +1,11 @@
+- hosts: jenkins
+  become: yes
+  tasks:
+    - apt:
+        name: openjdk-17-jdk
+        state: present
+        update_cache: yes
+
+    - apt:
+        name: jenkins
+        state: present

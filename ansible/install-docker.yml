@@ -1,0 +1,14 @@
+- hosts: all
+  become: yes
+  tasks:
+    - apt:
+        update_cache: yes
+
+    - apt:
+        name: docker.io
+        state: present
+
+    - service:
+        name: docker
+        state: started
+        enabled: yes
