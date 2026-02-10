@@ -2,16 +2,14 @@ provider "aws" {
   region = "ap-south-1"
 }
 
-############################
 # Default VPC
-############################
+
 data "aws_vpc" "default" {
   default = true
 }
 
-############################
 # Public Subnet
-############################
+
 resource "aws_subnet" "devops_subnet" {
   vpc_id                  = data.aws_vpc.default.id
   cidr_block              = "172.31.240.0/24"
@@ -34,9 +32,8 @@ resource "aws_internet_gateway" "devops_igw" {
   }
 }
 
-############################
+
 # Route Table
-############################
 resource "aws_route_table" "devops_rt" {
   vpc_id = data.aws_vpc.default.id
 
@@ -50,17 +47,13 @@ resource "aws_route_table" "devops_rt" {
   }
 }
 
-############################
-# Route Table Association
-############################
+# Route Table
 resource "aws_route_table_association" "devops_rta" {
   subnet_id      = aws_subnet.devops_subnet.id
   route_table_id = aws_route_table.devops_rt.id
 }
 
-############################
 # Security Group
-############################
 resource "aws_security_group" "devops_sg" {
   name   = "devops-sg-final"
   vpc_id = data.aws_vpc.default.id
@@ -94,9 +87,7 @@ resource "aws_security_group" "devops_sg" {
   }
 }
 
-############################
 # EC2 - Jenkins
-############################
 resource "aws_instance" "jenkins" {
   ami                    = "ami-0f5ee92e2d63afc18"
   instance_type          = "t3.micro"
@@ -109,9 +100,7 @@ resource "aws_instance" "jenkins" {
   }
 }
 
-############################
 # EC2 - Kubernetes Master
-############################
 resource "aws_instance" "k8s_master" {
   ami                    = "ami-0f5ee92e2d63afc18"
   instance_type          = "t3.micro"
@@ -124,9 +113,7 @@ resource "aws_instance" "k8s_master" {
   }
 }
 
-############################
 # EC2 - Kubernetes Worker
-############################
 resource "aws_instance" "k8s_worker" {
   ami                    = "ami-0f5ee92e2d63afc18"
   instance_type          = "t3.micro"
