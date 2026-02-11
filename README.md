@@ -1,5 +1,1 @@
-![kubectl-pods-services png](https://github.com/user-attachments/assets/bfb06230-c894-4894-9505-cd0633ba4420)
-![jenkins-pipeline png](https://github.com/user-attachments/assets/14a96f44-0a74-465e-ab7a-cdab5cb745f5)
-![grafana-dashboard png](https://github.com/user-attachments/assets/f25cbb31-87ae-4c9d-86e3-6b04cbceb757)
-![prometheus-targets png](https://github.com/user-attachments/assets/2724abad-cf44-4071-80b2-e6dbdf50ae3b)
-![webpage](https://github.com/user-attachments/assets/367ceb5f-2ec4-40d4-9879-7c9a91636dd9)
+
